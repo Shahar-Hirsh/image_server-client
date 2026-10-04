@@ -3,6 +3,8 @@ import threading
 from PIL import Image
 import os
 
+images_dir = os.path.join(os.path.dirname(__file__), "images")
+os.makedirs(images_dir, exist_ok=True)
 
 def recv_image_data(client_socket, file_name, file_data_len):
     """
@@ -23,7 +25,7 @@ def recv_image_data(client_socket, file_name, file_data_len):
             break
 
     # create the path
-    image_path = os.path.join(os.path.dirname(__file__), "images", file_name)
+    image_path = os.path.join(images_dir, file_name)
 
     # create the image file
     with open (image_path, "wb") as f:
